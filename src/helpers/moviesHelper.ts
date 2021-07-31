@@ -1,4 +1,6 @@
-export const sortMovies = (movies, sortAsc) => {
+import {MovieTypes} from '../components/Movie';
+
+export const sortMovies = (movies: MovieTypes[], sortAsc: boolean) => {
   let sortedMovies = [...movies];
   sortedMovies = sortedMovies.sort((a, b) =>
     a.episode_number > b.episode_number

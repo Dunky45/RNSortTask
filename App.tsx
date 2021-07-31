@@ -3,7 +3,7 @@ import {SafeAreaView} from 'react-native';
 import MoviesView from './src/containers/Movies/MoviesView';
 import variables from './src/styles/variables';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <SafeAreaView style={{backgroundColor: variables.white, flex: 1}}>
       <MoviesView />

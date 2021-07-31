@@ -3,7 +3,17 @@ import {View, Text, Image} from 'react-native';
 
 import styles from './styles';
 
-const Movie = ({movie}) => {
+export interface MovieTypes {
+  title: string;
+  episode_number: string;
+  poster: string;
+}
+
+interface Props {
+  movie: MovieTypes;
+}
+
+const Movie: React.FC<Props> = ({movie}) => {
   const {title, episode_number, poster} = movie;
 
   return (

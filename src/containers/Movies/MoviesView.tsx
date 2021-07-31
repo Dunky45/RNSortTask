@@ -3,13 +3,13 @@ import {FlatList} from 'react-native';
 import {getMovies} from '../../services/moviesService';
 import {sortMovies} from '../../helpers/moviesHelper';
 //COMPONENTS
-import Movie from '../../components/Movie';
+import Movie, {MovieTypes} from '../../components/Movie';
 //ELEMENTS
 import Button from '../../elements/Button';
 import Loader from '../../elements/Loader';
 import Container from '../../elements/Container';
 
-const MoviesView = () => {
+const MoviesView: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await getMovies();
@@ -18,29 +18,28 @@ const MoviesView = () => {
     fetchData();
   }, []);
 
-  const [movies, setMovies] = useState(null);
-  const [sortAsc, setSortAsc] = useState(false);
+  const [movies, setMovies] = useState<MovieTypes[]>([]);
+  const [sortAsc, setSortAsc] = useState<boolean>(false);
 
   const handleSort = () => {
-    const sortedMovies = sortMovies(movies, sortAsc);
+    const sortedMovies: MovieTypes[] = sortMovies(movies, sortAsc);
     setMovies(sortedMovies);
     setSortAsc(!sortAsc);
   };
 
-  if (!movies) return <Loader />;
+  if (movies.length < 1) return <Loader />;
 
   return (
     <Container>
       <FlatList
         data={movies}
+        keyExtractor={(item, index) => index.toString()}
         renderItem={({item}) => <Movie movie={item} />}
-        keyExtractor={(item, index) => index}
         style={{marginBottom: 15}}
       />
       <Button
         text={`Sort ${sortAsc ? 'ascending' : 'descending'}`}
         onPress={handleSort}
-        style={{marginTop: 15}}
       />
     </Container>
   );
