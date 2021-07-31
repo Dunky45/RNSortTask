@@ -1,5 +1,6 @@
-export const sortMovies = (movies, sortAsc) =>
-  movies.sort((a, b) =>
+export const sortMovies = (movies, sortAsc) => {
+  let sortedMovies = [...movies];
+  sortedMovies = sortedMovies.sort((a, b) =>
     a.episode_number > b.episode_number
       ? sortAsc
         ? 1
@@ -10,3 +11,6 @@ export const sortMovies = (movies, sortAsc) =>
         : 1
       : 0,
   );
+
+  return sortedMovies;
+};

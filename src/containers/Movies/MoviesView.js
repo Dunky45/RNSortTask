@@ -22,8 +22,7 @@ const MoviesView = () => {
   const [sortAsc, setSortAsc] = useState(false);
 
   const handleSort = () => {
-    let sortedMovies = [...movies];
-    sortedMovies = sortMovies(sortedMovies, sortAsc);
+    const sortedMovies = sortMovies(movies, sortAsc);
     setMovies(sortedMovies);
     setSortAsc(!sortAsc);
   };
